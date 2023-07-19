@@ -19,19 +19,19 @@ App de gestion ABM de sitios y reclamos.
 
 <br />
 
-- [<img align="left" src="https://drive.google.com/uc?export=view&id=1eMyMFeL5wBSPQmf_6-meAVGLIscnS-S1" width="30" height="30" />][html]
+- [<img align="left" src="https://drive.google.com/uc?export=view&id=1eMyMFeL5wBSPQmf_6-meAVGLIscnS-S1" width="30" height="30" target="_blank" />][html]
 
 <br />
 
-- [<img align="left" src="https://drive.google.com/uc?export=view&id=1sBEAo8L4U6nzL0mZwUA6L27x6mAU-p3v" width="30" height="30" />][appScript]
+- [<img align="left" src="https://drive.google.com/uc?export=view&id=1sBEAo8L4U6nzL0mZwUA6L27x6mAU-p3v" width="30" height="30" target="_blank"/>][appScript]
 
 <br />
 
-- [<img align="left" src="https://drive.google.com/uc?export=view&id=1r6yQjbrokymTF9JDgfpV4v63McP-qtWG" width="30" height="30" />][bootstrap5]
+- [<img align="left" src="https://drive.google.com/uc?export=view&id=1r6yQjbrokymTF9JDgfpV4v63McP-qtWG" width="30" height="30" target="_blank"/>][bootstrap5]
 
 <br />
 
-- [<img align="left" src="https://drive.google.com/uc?export=view&id=1WsV5p12xCWF45t6h_MB0Jt9LPpOvKwKs" width="30" height="30" />][datatables]
+- [<img align="left" src="https://drive.google.com/uc?export=view&id=1WsV5p12xCWF45t6h_MB0Jt9LPpOvKwKs" width="30" height="30" target="_blank"/>][datatables]
 
 
 
