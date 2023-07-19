@@ -1,0 +1,79 @@
+<script>
+  
+    function mostrarAlerta(mensaje){
+      if(mensaje == "insertarSitioOk"){
+        alertarOk("Sitio ingresado con exito");
+        document.getElementById("formAddSitios").reset();
+        document.getElementById("btnCerrar_formAddSitios").click();
+        listarSitios('mostrarListaSitios')
+  
+      }else  if(mensaje == "edicionSitioOk"){
+        alertarOk("Datos del Sitio actualizado con exito");
+        document.getElementById("formEditSitios").reset();
+        document.getElementById("btnCerrar_formEditSitios").click();
+        listarSitios('mostrarListaSitios')
+  
+      }else if(mensaje == "eliminarSitioOk"){
+        alertarOk("Sitio Eliminado");
+        listarSitios('mostrarListaSitios');
+  
+      }else if(mensaje == "insertarReclamoOk"){
+        alertarOk("Reclamo ingresado");
+        document.getElementById("addReclamoForm").reset();
+        document.getElementById("btnCerrar_addReclamoForm").click();
+  
+      }else if (mensaje == "edicionReclamoOk"){
+        alertarOk("Reclamo Gestionado");
+        document.getElementById("gesReclamoForm").reset();
+        document.getElementById("btnCerrar_gesReclamoForm").click();
+        listarReclamos('mostrarListaReclamos');
+      
+      }
+  
+      
+      
+      $.LoadingOverlay("hide");
+    }
+  
+    function eliminarSitioAlerta(titulo, texto){
+      return swal("Seguro que desea eliminar este Sitio?", {
+        title: titulo,
+        text: texto,
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      });
+    }
+  
+    function alertarOk(texto){
+      return swal({
+        title: "Excelente",
+        text: texto,
+        icon: "success",
+        button: "Cerrar"
+      })
+  
+    }
+  
+  
+    function alertarError(texto){
+      return swal({
+        title: "Error, no se pudo realizar lo solicitado",
+        text: texto,
+        icon: "warning",
+        button: "Cerrar"
+      })
+  
+    }
+  
+    function tablaVacia(texto){
+      return swal({
+        title: "Tabla Vacia",
+        text: texto,
+        icon: "warning",
+        button: "Cerrar"
+      })
+  
+    }
+  
+  </script>

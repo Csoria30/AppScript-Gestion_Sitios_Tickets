@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>App Reclamos</title>
+  </head>
+  <body>
+    
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">App Reclamos </a>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
+          <i class="fas fa-bars"></i>
+        </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" type="button" onclick="listarSitios('mostrarListaSitios')"><i class="bi bi-house"></i>  Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" type="button" aria-current="page" data-bs-toggle="modal" data-bs-target="#modalAddSitio"> <i class="bi bi-plus-circle"></i>  Agregar Sitio
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" type="button" aria-current="page" data-bs-toggle="modal" data-bs-target="#listaReclamosIngresadorModal" onclick="listarReclamos('mostrarListaReclamos')"> <i class="bi bi-list-check"></i>  Reclamos
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+   <div class="container-sm mt-3" id="tablaSitiosIndex">
+   </div>
+
+                                        <!-------------------->
+                                        <!-- VENTANAS MODAL -->
+                                        <!-------------------->
+
+  <!-- Modal Editar -->
+  <div class="modal fade" id="modalEditSitio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Editar Sitio</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+        <form onsubmit="editarSitios(this); return false;" id="formEditSitios">
+
+          <input type="hidden" id="accion" name="txtAccion" value="editar">
+          
+          <div class="row g-2 mt-3">
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="idSitioEdit" name="idSitioEdit" readonly>
+                <label for="idSitioEdit">ID</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-2 mt-3">
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="inputSitioEdit" name="inputSitioEdit">
+                <label for="inputSitioEdit">Sitio</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="inputLocalidadEdit" name="inputLocalidadEdit">
+                  <option value="">Seleccione una localidad</option>
+                  <option value="Alto Pelado">Alto Pelado</option>
+                  <option value="Alto Pencoso">Alto Pencoso</option>
+                  <option value="Anchorena">Anchorena</option>
+                  <option value="Árbol Solo">Árbol Solo</option>
+                  <option value="Arizona">Arizona</option>
+                  <option value="Bagual">Bagual</option>
+                  <option value="Bajada Nueva">Bajada Nueva</option>
+                  <option value="Bajo de Véliz">Bajo de Véliz</option>
+                  <option value="Balcarce">Balcarce</option>
+                  <option value="Balde">Balde</option>
+                  <option value="Balde de Azcurra">Balde de Azcurra</option>
+                  <option value="Balde de Escudero">Balde de Escudero</option>
+                  <option value="Balde de La Isla">Balde de La Isla</option>
+                  <option value="Balde de Retamo">Balde de Retamo</option>
+                  <option value="Balde del Carmen">Balde del Carmen</option>
+                  <option value="Baldecito">Baldecito</option>
+                  <option value="Baldecito de la Pampa">Baldecito de la Pampa</option>
+                  <option value="Bañadito Viejo">Bañadito Viejo</option>
+                  <option value="Bañado de Cautana">Bañado de Cautana</option>
+                  <option value="Barrancas Altas">Barrancas Altas</option>
+                  <option value="Batavia">Batavia</option>
+                  <option value="Beazley">Beazley</option>
+                  <option value="Bella Estancia">Bella Estancia</option>
+                  <option value="Buen Orden">Buen Orden</option>
+                  <option value="Buena Esperanza">Buena Esperanza</option>
+                  <option value="Buenos Aires">Buenos Aires</option>
+                  <option value="Cabeza de Novillo">Cabeza de Novillo</option>
+                  <option value="Cabeza de Vaca">Cabeza de Vaca</option>
+                  <option value="Cafferata - Varela">Cafferata - Varela</option>
+                  <option value="Canal Norte">Canal Norte</option>
+                  <option value="Candelaria">Candelaria</option>
+                  <option value="Cañada de la Negra">Cañada de la Negra</option>
+                  <option value="Cañada Honda">Cañada Honda</option>
+                  <option value="Cañada Honda de Guzman">Cañada Honda de Guzman</option>
+                  <option value="Carolina">Carolina</option>
+                  <option value="Carpintería">Carpintería</option>
+                  <option value="Casa de los Tigres">Casa de los Tigres</option>
+                  <option value="Casimiro Gómez">Casimiro Gómez</option>
+                  <option value="Cazador">Cazador</option>
+                  <option value="Cerrito Blanco">Cerrito Blanco</option>
+                  <option value="Cerro de Oro">Cerro de Oro</option>
+                  <option value="Cerros Largos">Cerros Largos</option>
+                  <option value="Charlone">Charlone</option>
+                  <option value="Chischaca">Chischaca</option>
+                  <option value="Chosmes">Chosmes</option>
+                  <option value="Colonia Don Antonio">Colonia Don Antonio</option>
+                  <option value="Colonia Zubelzu">Colonia Zubelzu</option>
+                  <option value="Concarán">Concarán</option>
+                  <option value="Córdoba">Córdoba</option>
+                  <option value="Coronel Alzogaray">Coronel Alzogaray</option>
+                  <option value="Cortaderas">Cortaderas</option>
+                  <option value="Cruz de Piedra">Cruz de Piedra</option>
+                  <option value="Desaguadero">Desaguadero</option>
+                  <option value="Dónovan">Dónovan</option>
+                  <option value="El Algarrobal (Ayacucho)">El Algarrobal (Ayacucho)</option>
+                  <option value="El Algarrobal (Chacabuco)">El Algarrobal (Chacabuco)</option>
+                  <option value="El Arenal">El Arenal</option>
+                  <option value="El Baldecito-Cerros Largos">El Baldecito-Cerros Largos</option>
+                  <option value="El Barrial">El Barrial</option>
+                  <option value="El Cadillo">El Cadillo</option>
+                  <option value="El Calden">El Calden</option>
+                  <option value="El Charabón">El Charabón</option>
+                  <option value="El Chorrillo">El Chorrillo</option>
+                  <option value="El Duraznito">El Duraznito</option>
+                  <option value="El Durazno">El Durazno</option>
+                  <option value="El Durazno Bajo">El Durazno Bajo</option>
+                  <option value="El Estanquito">El Estanquito</option>
+                  <option value="El Gigante - La Calera">El Gigante - La Calera</option>
+                  <option value="El Guanaco">El Guanaco</option>
+                  <option value="El Injerto">El Injerto</option>
+                  <option value="El Milagro">El Milagro</option>
+                  <option value="El Paraguay">El Paraguay</option>
+                  <option value="El Paraíso">El Paraíso</option>
+                  <option value="El Ramblón">El Ramblón</option>
+                  <option value="El Recodo">El Recodo</option>
+                  <option value="El Recuerdo">El Recuerdo</option>
+                  <option value="El Retamo">El Retamo</option>
+                  <option value="El Rincón">El Rincón</option>
+                  <option value="El Sauce">El Sauce</option>
+                  <option value="El Señuelo">El Señuelo</option>
+                  <option value="El Sifón">El Sifón</option>
+                  <option value="El Tala">El Tala</option>
+                  <option value="El Trapiche">El Trapiche</option>
+                  <option value="El Vinagrillo">El Vinagrillo</option>
+                  <option value="El Volcán">El Volcán</option>
+                  <option value="El Zapallar">El Zapallar</option>
+                  <option value="Eleodoro Lobos">Eleodoro Lobos</option>
+                  <option value="Embalse San Felipe">Embalse San Felipe</option>
+                  <option value="Estancia de Amieva">Estancia de Amieva</option>
+                  <option value="Estancia Grande">Estancia Grande</option>
+                  <option value="Estancia las Lagunitas">Estancia las Lagunitas</option>
+                  <option value="Fortín El Patria">Fortín El Patria</option>
+                  <option value="Fortuna">Fortuna</option>
+                  <option value="Fraga">Fraga</option>
+                  <option value="Gral. Urquiza">Gral. Urquiza</option>
+                  <option value="Hualtarán">Hualtarán</option>
+                  <option value="Inti Huasi">Inti Huasi</option>
+                  <option value="Jarilla">Jarilla</option>
+                  <option value="Juan Jorba">Juan Jorba</option>
+                  <option value="Juan Llerena">Juan Llerena</option>
+                  <option value="Juan W. Gez">Juan W. Gez</option>
+                  <option value="Juana Koslay">Juana Koslay</option>
+                  <option value="Justo Daract">Justo Daract</option>
+                  <option value="La Angelina">La Angelina</option>
+                  <option value="La Aveniencia">La Aveniencia</option>
+                  <option value="La Bajada (Ayacucho)">La Bajada (Ayacucho)</option>
+                  <option value="La Botija">La Botija</option>
+                  <option value="La Cañada">La Cañada</option>
+                  <option value="La Celestina">La Celestina</option>
+                  <option value="La Cocha">La Cocha</option>
+                  <option value="La Cumbre">La Cumbre</option>
+                  <option value="La Esquina">La Esquina</option>
+                  <option value="La Florida">La Florida</option>
+                  <option value="La Lomita">La Lomita</option>
+                  <option value="La Majada">La Majada</option>
+                  <option value="La Maroma">La Maroma</option>
+                  <option value="La Petra">La Petra</option>
+                  <option value="La Punilla">La Punilla</option>
+                  <option value="La Punta">La Punta</option>
+                  <option value="La Ramada">La Ramada</option>
+                  <option value="La Represita">La Represita</option>
+                  <option value="La Sirena">La Sirena</option>
+                  <option value="La Toma">La Toma</option>
+                  <option value="La Totora">La Totora</option>
+                  <option value="La tranca">La tranca</option>
+                  <option value="La Verde">La Verde</option>
+                  <option value="La Vertiente">La Vertiente</option>
+                  <option value="Lafinur">Lafinur</option>
+                  <option value="Laguna Larga">Laguna Larga</option>
+                  <option value="Las Aguadas">Las Aguadas</option>
+                  <option value="Las Barrancas">Las Barrancas</option>
+                  <option value="Las Barranquitas">Las Barranquitas</option>
+                  <option value="Las Cañas">Las Cañas</option>
+                  <option value="Las Chacras">Las Chacras</option>
+                  <option value="Las Chilcas">Las Chilcas</option>
+                  <option value="Las Huertas">Las Huertas</option>
+                  <option value="Las Isletas">Las Isletas</option>
+                  <option value="Las Lagunas">Las Lagunas</option>
+                  <option value="Las Lagunitas">Las Lagunitas</option>
+                  <option value="Las Palomas">Las Palomas</option>
+                  <option value="Las Rosas">Las Rosas</option>
+                  <option value="Las Vizcacheras">Las Vizcacheras</option>
+                  <option value="Lavaisse">Lavaisse</option>
+                  <option value="Leandro N Alem">Leandro N Alem</option>
+                  <option value="Liborio Luna">Liborio Luna</option>
+                  <option value="Loma Alta">Loma Alta</option>
+                  <option value="Lomas Blancas">Lomas Blancas</option>
+                  <option value="Los Algarrobos Blancos">Los Algarrobos Blancos</option>
+                  <option value="Los Cajones">Los Cajones</option>
+                  <option value="Los Chañares">Los Chañares</option>
+                  <option value="Los Comederos">Los Comederos</option>
+                  <option value="Los Lobos">Los Lobos</option>
+                  <option value="Los Molles">Los Molles</option>
+                  <option value="Los Overos">Los Overos</option>
+                  <option value="Los Puquios">Los Puquios</option>
+                  <option value="Los Quebrachos">Los Quebrachos</option>
+                  <option value="Los Quemados">Los Quemados</option>
+                  <option value="Los Ramblones">Los Ramblones</option>
+                  <option value="Luján">Luján</option>
+                  <option value="Mármol Verde">Mármol Verde</option>
+                  <option value="Martín de Loyola">Martín de Loyola</option>
+                  <option value="Merlo">Merlo</option>
+                  <option value="Mesilla del Cura">Mesilla del Cura</option>
+                  <option value="Nahuel Mapá">Nahuel Mapá</option>
+                  <option value="Naranjo Esquino">Naranjo Esquino</option>
+                  <option value="Naschel">Naschel</option>
+                  <option value="Navia">Navia</option>
+                  <option value="Nogolí">Nogolí</option>
+                  <option value="Nueva Escocia">Nueva Escocia</option>
+                  <option value="Nueva Galia">Nueva Galia</option>
+                  <option value="Ojo Del Río">Ojo Del Río</option>
+                  <option value="Pampa del Tamborero">Pampa del Tamborero</option>
+                  <option value="Pampa Grande">Pampa Grande</option>
+                  <option value="Papagayos">Papagayos</option>
+                  <option value="Paraje el Churrasco">Paraje el Churrasco</option>
+                  <option value="Paso del Rey">Paso del Rey</option>
+                  <option value="Paso Grande">Paso Grande</option>
+                  <option value="Piedra Blanca">Piedra Blanca</option>
+                  <option value="Piedras Anchas">Piedras Anchas</option>
+                  <option value="Pioneros Siglo XXI">Pioneros Siglo XXI</option>
+                  <option value="Poste de Hierro">Poste de Hierro</option>
+                  <option value="Potrerillos">Potrerillos</option>
+                  <option value="Potrero de los Funes">Potrero de los Funes</option>
+                  <option value="Pozo Cavado">Pozo Cavado</option>
+                  <option value="Pozo del Carril">Pozo del Carril</option>
+                  <option value="Pozo del Molle">Pozo del Molle</option>
+                  <option value="Pozo del Tala">Pozo del Tala</option>
+                  <option value="Puente la Horqueta">Puente la Horqueta</option>
+                  <option value="Puerta Colorada">Puerta Colorada</option>
+                  <option value="Puesto Balzora">Puesto Balzora</option>
+                  <option value="Punta de la Loma">Punta de la Loma</option>
+                  <option value="Punta Del Agua">Punta Del Agua</option>
+                  <option value="Quebrada de San Vicente">Quebrada de San Vicente</option>
+                  <option value="Quines">Quines</option>
+                  <option value="Renca">Renca</option>
+                  <option value="Represa del Carmen">Represa del Carmen</option>
+                  <option value="Represa del Chañar">Represa del Chañar</option>
+                  <option value="Rincón del Carmen">Rincón del Carmen</option>
+                  <option value="Río Grande">Río Grande</option>
+                  <option value="Río Juan Gómez">Río Juan Gómez</option>
+                  <option value="Río Quinto">Río Quinto</option>
+                  <option value="Rodeo de Cadenas">Rodeo de Cadenas</option>
+                  <option value="Saladillo">Saladillo</option>
+                  <option value="Salinas del Bebedero">Salinas del Bebedero</option>
+                  <option value="San Antonio">San Antonio</option>
+                  <option value="San Felipe">San Felipe</option>
+                  <option value="San Fernando">San Fernando</option>
+                  <option value="San Francisco">San Francisco</option>
+                  <option value="San Ignacio">San Ignacio</option>
+                  <option value="San Isidro">San Isidro</option>
+                  <option value="San Jerónimo">San Jerónimo</option>
+                  <option value="San José de los Chañares">San José de los Chañares</option>
+                  <option value="San José del Morro">San José del Morro</option>
+                  <option value="San Luis">San Luis</option>
+                  <option value="San Martín">San Martín</option>
+                  <option value="San Martín del Alto Negro">San Martín del Alto Negro</option>
+                  <option value="San Miguel - Candelaria">San Miguel - Candelaria</option>
+                  <option value="San Pablo">San Pablo</option>
+                  <option value="San Pedro">San Pedro</option>
+                  <option value="San Roque">San Roque</option>
+                  <option value="San Roque de Chipiscú">San Roque de Chipiscú</option>
+                  <option value="Santa Ana">Santa Ana</option>
+                  <option value="Santa Isabel">Santa Isabel</option>
+                  <option value="Santa Martina">Santa Martina</option>
+                  <option value="Santa Rosa">Santa Rosa</option>
+                  <option value="Santa Rosa del Cantantal">Santa Rosa del Cantantal</option>
+                  <option value="Santa Rosa del Conlara">Santa Rosa del Conlara</option>
+                  <option value="Santa Rosa del Gigante">Santa Rosa del Gigante</option>
+                  <option value="Santa Teresita">Santa Teresita</option>
+                  <option value="Santo Domingo">Santo Domingo</option>
+                  <option value="Suyuque Nuevo">Suyuque Nuevo</option>
+                  <option value="Tala Verde">Tala Verde</option>
+                  <option value="Talita">Talita</option>
+                  <option value="Tilisarao">Tilisarao</option>
+                  <option value="Toro Negro">Toro Negro</option>
+                  <option value="Unión">Unión</option>
+                  <option value="Valle de Pancanta">Valle de Pancanta</option>
+                  <option value="Villa de la Quebrada">Villa de la Quebrada</option>
+                  <option value="Villa del Carmen">Villa del Carmen</option>
+                  <option value="Villa Gral Roca - Los Manantiales">Villa Gral Roca - Los Manantiales</option>
+                  <option value="Villa Larca">Villa Larca</option>
+                  <option value="Villa Mercedes">Villa Mercedes</option>
+                  <option value="Villa Praga">Villa Praga</option>
+                  <option value="Villa Reynolds">Villa Reynolds</option>
+                  <option value="Villa Salles">Villa Salles</option>
+                  <option value="Zanjitas">Zanjitas</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-2 mt-3">
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="inputNisEdit" name="inputNisEdit">
+                <label for="inputNisEdit">NIS</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="inputMedidorEdit" name="inputMedidorEdit">
+                <label for="inputMedidorEdit">Medidor</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-floating mt-3">
+            <textarea class="form-control" id="inputDCEdit" name="inputDCEdit" style="height: 100px"></textarea>
+            <label for="inputDCEdit">Datos de contacto</label>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnCerrar_formEditSitios">Cerrar</button>
+            <button type="submit" class="btn btn-primary" >Guardar Cambios</button>
+          </div>
+
+        </form>
+        </div>
+
+        
+      </div>
+    </div>
+  </div> <!-- .Modal Editar -->
+
+  
+  <!-- Modal Crear -->
+  <div class="modal fade" id="modalAddSitio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Agregar Sitio</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+        <form onsubmit="insertarSitios(this); return false;" id="formAddSitios">
+        <input type="hidden" id="accion" name="txtAccion" value="insertar">
+
+          <div class="row g-2">
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="inputSitioAdd" name="inputSitioAdd" required>
+                <label for="inputSitioAdd">Sitio</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="inputLocalidadAdd" name="inputLocalidadAdd">
+                  <option value="">Seleccione una localidad</option>
+                  <option value="Alto Pelado">Alto Pelado</option>
+                  <option value="Alto Pencoso">Alto Pencoso</option>
+                  <option value="Anchorena">Anchorena</option>
+                  <option value="Árbol Solo">Árbol Solo</option>
+                  <option value="Arizona">Arizona</option>
+                  <option value="Bagual">Bagual</option>
+                  <option value="Bajada Nueva">Bajada Nueva</option>
+                  <option value="Bajo de Véliz">Bajo de Véliz</option>
+                  <option value="Balcarce">Balcarce</option>
+                  <option value="Balde">Balde</option>
+                  <option value="Balde de Azcurra">Balde de Azcurra</option>
+                  <option value="Balde de Escudero">Balde de Escudero</option>
+                  <option value="Balde de La Isla">Balde de La Isla</option>
+                  <option value="Balde de Retamo">Balde de Retamo</option>
+                  <option value="Balde del Carmen">Balde del Carmen</option>
+                  <option value="Baldecito">Baldecito</option>
+                  <option value="Baldecito de la Pampa">Baldecito de la Pampa</option>
+                  <option value="Bañadito Viejo">Bañadito Viejo</option>
+                  <option value="Bañado de Cautana">Bañado de Cautana</option>
+                  <option value="Barrancas Altas">Barrancas Altas</option>
+                  <option value="Batavia">Batavia</option>
+                  <option value="Beazley">Beazley</option>
+                  <option value="Bella Estancia">Bella Estancia</option>
+                  <option value="Buen Orden">Buen Orden</option>
+                  <option value="Buena Esperanza">Buena Esperanza</option>
+                  <option value="Buenos Aires">Buenos Aires</option>
+                  <option value="Cabeza de Novillo">Cabeza de Novillo</option>
+                  <option value="Cabeza de Vaca">Cabeza de Vaca</option>
+                  <option value="Cafferata - Varela">Cafferata - Varela</option>
+                  <option value="Canal Norte">Canal Norte</option>
+                  <option value="Candelaria">Candelaria</option>
+                  <option value="Cañada de la Negra">Cañada de la Negra</option>
+                  <option value="Cañada Honda">Cañada Honda</option>
+                  <option value="Cañada Honda de Guzman">Cañada Honda de Guzman</option>
+                  <option value="Carolina">Carolina</option>
+                  <option value="Carpintería">Carpintería</option>
+                  <option value="Casa de los Tigres">Casa de los Tigres</option>
+                  <option value="Casimiro Gómez">Casimiro Gómez</option>
+                  <option value="Cazador">Cazador</option>
+                  <option value="Cerrito Blanco">Cerrito Blanco</option>
+                  <option value="Cerro de Oro">Cerro de Oro</option>
+                  <option value="Cerros Largos">Cerros Largos</option>
+                  <option value="Charlone">Charlone</option>
+                  <option value="Chischaca">Chischaca</option>
+                  <option value="Chosmes">Chosmes</option>
+                  <option value="Colonia Don Antonio">Colonia Don Antonio</option>
+                  <option value="Colonia Zubelzu">Colonia Zubelzu</option>
+                  <option value="Concarán">Concarán</option>
+                  <option value="Córdoba">Córdoba</option>
+                  <option value="Coronel Alzogaray">Coronel Alzogaray</option>
+                  <option value="Cortaderas">Cortaderas</option>
+                  <option value="Cruz de Piedra">Cruz de Piedra</option>
+                  <option value="Desaguadero">Desaguadero</option>
+                  <option value="Dónovan">Dónovan</option>
+                  <option value="El Algarrobal (Ayacucho)">El Algarrobal (Ayacucho)</option>
+                  <option value="El Algarrobal (Chacabuco)">El Algarrobal (Chacabuco)</option>
+                  <option value="El Arenal">El Arenal</option>
+                  <option value="El Baldecito-Cerros Largos">El Baldecito-Cerros Largos</option>
+                  <option value="El Barrial">El Barrial</option>
+                  <option value="El Cadillo">El Cadillo</option>
+                  <option value="El Calden">El Calden</option>
+                  <option value="El Charabón">El Charabón</option>
+                  <option value="El Chorrillo">El Chorrillo</option>
+                  <option value="El Duraznito">El Duraznito</option>
+                  <option value="El Durazno">El Durazno</option>
+                  <option value="El Durazno Bajo">El Durazno Bajo</option>
+                  <option value="El Estanquito">El Estanquito</option>
+                  <option value="El Gigante - La Calera">El Gigante - La Calera</option>
+                  <option value="El Guanaco">El Guanaco</option>
+                  <option value="El Injerto">El Injerto</option>
+                  <option value="El Milagro">El Milagro</option>
+                  <option value="El Paraguay">El Paraguay</option>
+                  <option value="El Paraíso">El Paraíso</option>
+                  <option value="El Ramblón">El Ramblón</option>
+                  <option value="El Recodo">El Recodo</option>
+                  <option value="El Recuerdo">El Recuerdo</option>
+                  <option value="El Retamo">El Retamo</option>
+                  <option value="El Rincón">El Rincón</option>
+                  <option value="El Sauce">El Sauce</option>
+                  <option value="El Señuelo">El Señuelo</option>
+                  <option value="El Sifón">El Sifón</option>
+                  <option value="El Tala">El Tala</option>
+                  <option value="El Trapiche">El Trapiche</option>
+                  <option value="El Vinagrillo">El Vinagrillo</option>
+                  <option value="El Volcán">El Volcán</option>
+                  <option value="El Zapallar">El Zapallar</option>
+                  <option value="Eleodoro Lobos">Eleodoro Lobos</option>
+                  <option value="Embalse San Felipe">Embalse San Felipe</option>
+                  <option value="Estancia de Amieva">Estancia de Amieva</option>
+                  <option value="Estancia Grande">Estancia Grande</option>
+                  <option value="Estancia las Lagunitas">Estancia las Lagunitas</option>
+                  <option value="Fortín El Patria">Fortín El Patria</option>
+                  <option value="Fortuna">Fortuna</option>
+                  <option value="Fraga">Fraga</option>
+                  <option value="Gral. Urquiza">Gral. Urquiza</option>
+                  <option value="Hualtarán">Hualtarán</option>
+                  <option value="Inti Huasi">Inti Huasi</option>
+                  <option value="Jarilla">Jarilla</option>
+                  <option value="Juan Jorba">Juan Jorba</option>
+                  <option value="Juan Llerena">Juan Llerena</option>
+                  <option value="Juan W. Gez">Juan W. Gez</option>
+                  <option value="Juana Koslay">Juana Koslay</option>
+                  <option value="Justo Daract">Justo Daract</option>
+                  <option value="La Angelina">La Angelina</option>
+                  <option value="La Aveniencia">La Aveniencia</option>
+                  <option value="La Bajada (Ayacucho)">La Bajada (Ayacucho)</option>
+                  <option value="La Botija">La Botija</option>
+                  <option value="La Cañada">La Cañada</option>
+                  <option value="La Celestina">La Celestina</option>
+                  <option value="La Cocha">La Cocha</option>
+                  <option value="La Cumbre">La Cumbre</option>
+                  <option value="La Esquina">La Esquina</option>
+                  <option value="La Florida">La Florida</option>
+                  <option value="La Lomita">La Lomita</option>
+                  <option value="La Majada">La Majada</option>
+                  <option value="La Maroma">La Maroma</option>
+                  <option value="La Petra">La Petra</option>
+                  <option value="La Punilla">La Punilla</option>
+                  <option value="La Punta">La Punta</option>
+                  <option value="La Ramada">La Ramada</option>
+                  <option value="La Represita">La Represita</option>
+                  <option value="La Sirena">La Sirena</option>
+                  <option value="La Toma">La Toma</option>
+                  <option value="La Totora">La Totora</option>
+                  <option value="La tranca">La tranca</option>
+                  <option value="La Verde">La Verde</option>
+                  <option value="La Vertiente">La Vertiente</option>
+                  <option value="Lafinur">Lafinur</option>
+                  <option value="Laguna Larga">Laguna Larga</option>
+                  <option value="Las Aguadas">Las Aguadas</option>
+                  <option value="Las Barrancas">Las Barrancas</option>
+                  <option value="Las Barranquitas">Las Barranquitas</option>
+                  <option value="Las Cañas">Las Cañas</option>
+                  <option value="Las Chacras">Las Chacras</option>
+                  <option value="Las Chilcas">Las Chilcas</option>
+                  <option value="Las Huertas">Las Huertas</option>
+                  <option value="Las Isletas">Las Isletas</option>
+                  <option value="Las Lagunas">Las Lagunas</option>
+                  <option value="Las Lagunitas">Las Lagunitas</option>
+                  <option value="Las Palomas">Las Palomas</option>
+                  <option value="Las Rosas">Las Rosas</option>
+                  <option value="Las Vizcacheras">Las Vizcacheras</option>
+                  <option value="Lavaisse">Lavaisse</option>
+                  <option value="Leandro N Alem">Leandro N Alem</option>
+                  <option value="Liborio Luna">Liborio Luna</option>
+                  <option value="Loma Alta">Loma Alta</option>
+                  <option value="Lomas Blancas">Lomas Blancas</option>
+                  <option value="Los Algarrobos Blancos">Los Algarrobos Blancos</option>
+                  <option value="Los Cajones">Los Cajones</option>
+                  <option value="Los Chañares">Los Chañares</option>
+                  <option value="Los Comederos">Los Comederos</option>
+                  <option value="Los Lobos">Los Lobos</option>
+                  <option value="Los Molles">Los Molles</option>
+                  <option value="Los Overos">Los Overos</option>
+                  <option value="Los Puquios">Los Puquios</option>
+                  <option value="Los Quebrachos">Los Quebrachos</option>
+                  <option value="Los Quemados">Los Quemados</option>
+                  <option value="Los Ramblones">Los Ramblones</option>
+                  <option value="Luján">Luján</option>
+                  <option value="Mármol Verde">Mármol Verde</option>
+                  <option value="Martín de Loyola">Martín de Loyola</option>
+                  <option value="Merlo">Merlo</option>
+                  <option value="Mesilla del Cura">Mesilla del Cura</option>
+                  <option value="Nahuel Mapá">Nahuel Mapá</option>
+                  <option value="Naranjo Esquino">Naranjo Esquino</option>
+                  <option value="Naschel">Naschel</option>
+                  <option value="Navia">Navia</option>
+                  <option value="Nogolí">Nogolí</option>
+                  <option value="Nueva Escocia">Nueva Escocia</option>
+                  <option value="Nueva Galia">Nueva Galia</option>
+                  <option value="Ojo Del Río">Ojo Del Río</option>
+                  <option value="Pampa del Tamborero">Pampa del Tamborero</option>
+                  <option value="Pampa Grande">Pampa Grande</option>
+                  <option value="Papagayos">Papagayos</option>
+                  <option value="Paraje el Churrasco">Paraje el Churrasco</option>
+                  <option value="Paso del Rey">Paso del Rey</option>
+                  <option value="Paso Grande">Paso Grande</option>
+                  <option value="Piedra Blanca">Piedra Blanca</option>
+                  <option value="Piedras Anchas">Piedras Anchas</option>
+                  <option value="Pioneros Siglo XXI">Pioneros Siglo XXI</option>
+                  <option value="Poste de Hierro">Poste de Hierro</option>
+                  <option value="Potrerillos">Potrerillos</option>
+                  <option value="Potrero de los Funes">Potrero de los Funes</option>
+                  <option value="Pozo Cavado">Pozo Cavado</option>
+                  <option value="Pozo del Carril">Pozo del Carril</option>
+                  <option value="Pozo del Molle">Pozo del Molle</option>
+                  <option value="Pozo del Tala">Pozo del Tala</option>
+                  <option value="Puente la Horqueta">Puente la Horqueta</option>
+                  <option value="Puerta Colorada">Puerta Colorada</option>
+                  <option value="Puesto Balzora">Puesto Balzora</option>
+                  <option value="Punta de la Loma">Punta de la Loma</option>
+                  <option value="Punta Del Agua">Punta Del Agua</option>
+                  <option value="Quebrada de San Vicente">Quebrada de San Vicente</option>
+                  <option value="Quines">Quines</option>
+                  <option value="Renca">Renca</option>
+                  <option value="Represa del Carmen">Represa del Carmen</option>
+                  <option value="Represa del Chañar">Represa del Chañar</option>
+                  <option value="Rincón del Carmen">Rincón del Carmen</option>
+                  <option value="Río Grande">Río Grande</option>
+                  <option value="Río Juan Gómez">Río Juan Gómez</option>
+                  <option value="Río Quinto">Río Quinto</option>
+                  <option value="Rodeo de Cadenas">Rodeo de Cadenas</option>
+                  <option value="Saladillo">Saladillo</option>
+                  <option value="Salinas del Bebedero">Salinas del Bebedero</option>
+                  <option value="San Antonio">San Antonio</option>
+                  <option value="San Felipe">San Felipe</option>
+                  <option value="San Fernando">San Fernando</option>
+                  <option value="San Francisco">San Francisco</option>
+                  <option value="San Ignacio">San Ignacio</option>
+                  <option value="San Isidro">San Isidro</option>
+                  <option value="San Jerónimo">San Jerónimo</option>
+                  <option value="San José de los Chañares">San José de los Chañares</option>
+                  <option value="San José del Morro">San José del Morro</option>
+                  <option value="San Luis">San Luis</option>
+                  <option value="San Martín">San Martín</option>
+                  <option value="San Martín del Alto Negro">San Martín del Alto Negro</option>
+                  <option value="San Miguel - Candelaria">San Miguel - Candelaria</option>
+                  <option value="San Pablo">San Pablo</option>
+                  <option value="San Pedro">San Pedro</option>
+                  <option value="San Roque">San Roque</option>
+                  <option value="San Roque de Chipiscú">San Roque de Chipiscú</option>
+                  <option value="Santa Ana">Santa Ana</option>
+                  <option value="Santa Isabel">Santa Isabel</option>
+                  <option value="Santa Martina">Santa Martina</option>
+                  <option value="Santa Rosa">Santa Rosa</option>
+                  <option value="Santa Rosa del Cantantal">Santa Rosa del Cantantal</option>
+                  <option value="Santa Rosa del Conlara">Santa Rosa del Conlara</option>
+                  <option value="Santa Rosa del Gigante">Santa Rosa del Gigante</option>
+                  <option value="Santa Teresita">Santa Teresita</option>
+                  <option value="Santo Domingo">Santo Domingo</option>
+                  <option value="Suyuque Nuevo">Suyuque Nuevo</option>
+                  <option value="Tala Verde">Tala Verde</option>
+                  <option value="Talita">Talita</option>
+                  <option value="Tilisarao">Tilisarao</option>
+                  <option value="Toro Negro">Toro Negro</option>
+                  <option value="Unión">Unión</option>
+                  <option value="Valle de Pancanta">Valle de Pancanta</option>
+                  <option value="Villa de la Quebrada">Villa de la Quebrada</option>
+                  <option value="Villa del Carmen">Villa del Carmen</option>
+                  <option value="Villa Gral Roca - Los Manantiales">Villa Gral Roca - Los Manantiales</option>
+                  <option value="Villa Larca">Villa Larca</option>
+                  <option value="Villa Mercedes">Villa Mercedes</option>
+                  <option value="Villa Praga">Villa Praga</option>
+                  <option value="Villa Reynolds">Villa Reynolds</option>
+                  <option value="Villa Salles">Villa Salles</option>
+                  <option value="Zanjitas">Zanjitas</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row g-2 mt-3">
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="inputNisAdd" name="inputNisAdd" required>
+                <label for="inputNisAdd">NIS</label>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="inputMedidorAdd" name="inputMedidorAdd">
+                <label for="inputMedidorAdd">Medidor</label>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-floating mt-3">
+            <textarea class="form-control" id="inputDCAdd" name="inputDCAdd" style="height: 100px"></textarea>
+            <label for="inputDCAdd">Datos de contacto</label>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btnCerrar_formAddSitios">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </div>
+
+        </form>
+        </div>
+
+        
+      </div>
+    </div>
+  </div> <!-- .Modal Crear -->
+
+  <!-- Modal Crear Reclamo -->
+  <div class="modal fade" id="crearReclamo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Crear Reclamo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form class="needs-validation" onsubmit="insertarReclamos(this); return false;" id="addReclamoForm">
+
+            <input type="hidden" id="accion" name="txtAccion" value="insertar">
+
+            <div class="row g-2 mt-3">
+              <div class="col-md">
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="idSitioEdit2" name="idSitioEdit2" readonly>
+                  <label for="idSitioEdit2">ID</label>
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="form-floating">
+                  <input type="text" class="form-control" name="inputLocalidadRAdd" id="inputLocalidadRAdd" required readonly>
+                  <label for="inputLocalidadRAdd" >Localidad</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-3 g-3 align-items-center">
+              <div class="mb-3">
+                <label for="inputSitioR" class="form-label">Sitio</label>
+                <input type="text" class="form-control"  id="inputSitioR" name="inputSitioR" required readonly/>                
+              </div>
+             
+              <div class="mb-3">
+                <label for="inputSitioNis" class="form-label">Numero de NIS</label>
+                <input type="text" class="form-control" name="inputSitioNis" id="inputSitioNis" required readonly>
+              </div>
+
+              <div class="mb-3">
+                <label for="inputSitioNReclamo" class="form-label">Numero de Reclamo Edesal</label>
+                <input type="text" class="form-control" name="inputSitioNReclamo" id="inputSitioNReclamo" required>
+              </div>
+
+            </div>
+
+            <button type="button" class="btn btn-secondary" id="btnCerrar_addReclamoForm" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </form>
+        </div><!-- .Modal-Body Reclamo-->
+        
+      </div>
+    </div>
+  </div> <!-- .Modal Crear -->
+
+  <!-- Modal Editar Reclamo -->
+  <div class="modal fade" id="editarReclamo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1900">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Gestionar Reclamo</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form class="needs-validation" onsubmit="editarReclamos(this); return false;" id="gesReclamoForm">
+
+            <input type="hidden" id="accion" name="txtAccion" value="editar">
+
+            
+              <div class="mb-3">
+                <label for="inputSitioNReclamoGes" class="form-label">Numero de Reclamo Edesal</label>
+                <input type="text" class="form-control" name="inputSitioNReclamoGes" id="inputSitioNReclamoGes" required readonly>
+              </div>
+
+              <div class="mb-3">
+                <label for="inputEstadoReclamo" class="form-label">Estado</label>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="inputEstadoReclamo" name="inputEstadoReclamo">
+                  <option value="Solucionado">Solucionado</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="modal-footer mt-3">
+              <button type="button" class="btn btn-secondary" id="btnCerrar_gesReclamoForm" data-bs-dismiss="modal">Cerrar</button>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </form>
+        </div><!-- .Modal-Body Reclamo-->
+        
+      </div>
+    </div>
+  </div> <!-- .Modal Editar Reclamo -->
+
+    <!-- Modal Listar Reclamos -->
+  <div class="modal fade" id="listaReclamosIngresadorModal" tabindex="-2" aria-labelledby="exampleModalLabel" aria-hidden="true" style="z-index: 1600" >
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Lista de reclamos ingresados</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="container-sm mt-3" id="tablaReclamosModal">
+          </div>
+
+        </div><!--.modal-body  -->
+      </div>
+    </div>
+  </div> <!-- .Modal Listar Reclamos -->
+
+  </body>
+</html>

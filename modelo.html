@@ -1,0 +1,70 @@
+<script>
+    /**************/
+    /*   Sitio    */
+    /**************/
+
+
+function listarSitios(funcion){
+$.LoadingOverlay("show");
+google.script.run.withSuccessHandler(eval(funcion)).controladorSitios("","listar");
+}
+
+function insertarSitios(form){
+$.LoadingOverlay("show");
+google.script.run.withSuccessHandler(eval(mostrarAlerta)).controladorSitios(form);
+}
+
+function auxSitiosEditar(id){
+$.LoadingOverlay("show");
+google.script.run.withSuccessHandler(eval(cargarEditarSitio)).consultarDatos(id);
+}
+
+function editarSitios(form){
+$.LoadingOverlay("show");
+google.script.run.withSuccessHandler(eval(mostrarAlerta)).controladorSitios(form);
+}
+
+function auxSitiosEliminar(id){
+$.LoadingOverlay("show");
+google.script.run.withSuccessHandler(eval(eliminarSitios)).consultarDatos(id);
+}
+
+function eliminarSitios(datos){
+$.LoadingOverlay("hide"); 
+eliminarSitioAlerta("¿Eliminar el sitio ID: " + datos[0].id + " " + datos[0].sitioName + " ?", "").then((willDelete) => {
+if(willDelete){
+$.LoadingOverlay("show");
+google.script.run.withSuccessHandler(eval(mostrarAlerta)).controladorSitios("", "eliminar", datos[0].id);
+}
+});
+}
+
+    /******************/
+    /*   Reclamos    */
+    /*****************/
+function listarReclamos(funcion){
+$.LoadingOverlay("show");
+google.script.run.withSuccessHandler(eval(funcion)).controladorReclamos("","listar");
+}
+
+function insertarReclamos(form){
+$.LoadingOverlay("show");
+google.script.run.withSuccessHandler(eval(mostrarAlerta)).controladorReclamos(form);
+}
+
+function editarReclamos(form){
+$.LoadingOverlay("show");
+google.script.run.withSuccessHandler(eval(mostrarAlerta)).controladorReclamos(form);
+}
+
+function auxReclamoEditar(id){
+$.LoadingOverlay("show");
+google.script.run.withSuccessHandler(eval(cargarAddReclamo)).consultarDatos(id);
+}
+
+function auxReclamoGestionar(nReclamo){
+$.LoadingOverlay("show");
+google.script.run.withSuccessHandler(eval(cargarReclamoGestionar)).consultarDatosReclamo(nReclamo);
+}
+
+</script>

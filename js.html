@@ -1,0 +1,278 @@
+<script>
+    window.onload = listarSitios('mostrarListaSitios');
+  
+    function tablaMostrarSitios(){
+    var tabla = "<table class='table table-hover' id='tablaSitios'> "+
+                "<thead>"+
+                  "<tr class='table-light text-uppercase'>"+
+                    "<th scope='col'>ID</th>"+
+                    "<th scope='col'>Localidad</th>"+
+                    "<th scope='col'>Sitio</th>"+
+                    "<th scope='col'>Nis</th>"+
+                    "<th scope='col'>Medidor</th>"+
+                    "<th scope='col'>Contacto</th>"+
+                    "<th scope='col'>Acciones</th>"+
+                  "</tr>"+
+                "</thead>"+
+                "</table>"
+  
+        document.getElementById('tablaSitiosIndex').innerHTML = tabla;
+        return true;
+    }
+  
+    function mostrarListaSitios(datosSitios){
+      var contenedor = document.getElementById('tablaSitiosIndex');
+  
+      if(datosSitios.length > 0){
+      tablaMostrarSitios();
+  
+      $('#tablaSitios').DataTable({
+        data: datosSitios,
+        columns:[
+          {data: 'id'},
+          {data: 'localidad'},
+          {data: 'sitioName'},
+          {data: 'nis'},
+          {data: 'medidor'},
+          {data: 'contacto'},
+          {data: 'acciones'}
+  
+        ],
+  
+        dom: 'Bfrtip',
+        lengthMenu: [
+          [10,25,50,100,500, -1],
+          ['10 Filas','25 Filas', '50 Filas', '100 Filas', '500 Filas', 'Ver Todo']
+        ],
+  
+        buttons:[
+          'copy','csv','excel','pdf','pageLength'
+        ],      
+  
+        language: {
+          "decimal": "",
+          "emptyTable": "No hay informacion",
+          "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 de 0 registros",
+          "infoFiltered": "(Filtrado de _MAX_ total Registros)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lenghtMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "firts": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+  
+        rowCallback: function(row,data){
+        
+        }
+        
+      }); 
+    }else{
+      alertarError("No se encontraron registros");
+      document.getElementById('tablaSitiosIndex').innerHTML = "";
+    }
+    $.LoadingOverlay("hide");
+  
+    }
+  
+    function mostrarListaSitios2(datosSitios){
+      var contenidos = document.getElementById("contenidoTablaSitios");
+      contenidos.innerHTML="";
+  
+      for(var i = 0 ; i < datosSitios.length ; i++){
+        var tr = document.createElement("tr");
+        var tdId = document.createElement("td");
+        var tdLocalidad = document.createElement("td");
+        var tdSitio = document.createElement("td");
+        var tdNis = document.createElement("td");
+        var tdMedidor = document.createElement("td");
+        var tdContacto = document.createElement("td");
+        var tdBotones = document.createElement("td");
+  
+        var botonEditar = document.createElement("button");
+        var iEditar = document.createElement("i");
+        botonEditar.setAttribute("type","button");
+        botonEditar.className="btn btn-primary";
+        botonEditar.setAttribute("style","margin-right: 5px");
+        botonEditar.setAttribute("data-bs-toggle","modal");
+        botonEditar.setAttribute("data-bs-target","#modalEditSitio");
+        botonEditar.setAttribute("onclick","cargarEditarSitio("+datosSitios[i].id+",'"+datosSitios[i].localidad+"', '"+datosSitios[i].sitioName+"', '"+datosSitios[i].nis+"', '"+datosSitios[i].medidor+"', '"+datosSitios[i].contacto+"')");
+        iEditar.className="bi bi-pencil-fill";
+        botonEditar.innerHTML = "";
+  
+        var botonEliminar = document.createElement("button");
+        var iEliminar = document.createElement("i");
+        botonEliminar.setAttribute("type","button");
+        botonEliminar.setAttribute("onclick","eliminarSitios("+datosSitios[i].id+", '"+datosSitios[i].sitioName+"')");
+        botonEliminar.className="btn btn-danger";
+        iEliminar.className="bi bi-trash";
+        botonEliminar.innerHTML = "";
+  
+        var botonGenerar = document.createElement("button");
+        var iGenerar = document.createElement("i");
+        botonGenerar.setAttribute("type","button");
+        botonGenerar.className="btn btn-success";
+        botonGenerar.setAttribute("style","margin-right: 5px");
+        botonGenerar.setAttribute("data-bs-toggle","modal");
+        botonGenerar.setAttribute("data-bs-target","");
+        iGenerar.className="bi bi-plugin";
+        botonGenerar.innerHTML = "";
+  
+        tdId.innerHTML = i+1;
+        td_ID = datosSitios[i].id;
+        tdLocalidad.innerHTML = datosSitios[i].localidad;
+        tdSitio.innerHTML = datosSitios[i].sitioName;
+        tdNis.innerHTML  = datosSitios[i].nis;
+        tdMedidor.innerHTML = datosSitios[i].medidor;
+        tdContacto.innerHTML = datosSitios[i].contacto;
+  
+        tr.appendChild(tdId);
+        tr.appendChild(tdLocalidad);
+        tr.appendChild(tdSitio);
+        tr.appendChild(tdNis);
+        tr.appendChild(tdMedidor);
+        tr.appendChild(tdContacto);
+  
+        botonEditar.appendChild(iEditar);
+        tdBotones.appendChild(botonEditar);
+        tr.appendChild(tdBotones);
+  
+        botonEliminar.appendChild(iEliminar);
+        tdBotones.appendChild(botonEliminar);
+        tr.appendChild(tdBotones);
+  
+        botonGenerar.appendChild(iGenerar);
+        tdBotones.appendChild(botonGenerar);
+        tr.appendChild(tdBotones);
+        
+        contenidos.appendChild(tr);
+  
+      }
+      $.LoadingOverlay("hide");
+    }
+  
+    function cargarEditarSitio(datos){
+  
+      document.getElementById("idSitioEdit").value=datos[0].id;
+      document.getElementById("inputSitioEdit").value=datos[0].sitioName;
+      document.getElementById("inputLocalidadEdit").value=datos[0].localidad;
+      document.getElementById("inputNisEdit").value=datos[0].nis;
+      document.getElementById("inputMedidorEdit").value=datos[0].medidor;
+      document.getElementById("inputDCEdit").value=datos[0].contacto;
+    $.LoadingOverlay("hide");
+    }
+  
+    function mostrarAlerta(){
+  
+    }
+  
+                          /*********************/
+                          /* Seccion Reclamos */
+                          /*******************/
+  
+    function cargarReclamoGestionar(datos){
+      document.getElementById("inputSitioNReclamoGes").value=datos[0].recalamoEdesal;
+      $.LoadingOverlay("hide");
+    }
+  
+    function cargarAddReclamo(datos){
+  
+      document.getElementById("idSitioEdit2").value=datos[0].id;
+      document.getElementById("inputSitioR").value=datos[0].sitioName;
+      document.getElementById("inputSitioNis").value=datos[0].nis;
+      document.getElementById("inputLocalidadRAdd").value=datos[0].localidad;
+      
+    $.LoadingOverlay("hide");
+    }
+  
+    function mostrarAlerta(){
+  
+    }
+  function tablaMostrarReclamos(){
+    var tabla = "<table class='table table-hover' id='tablaReclamos'> "+
+                "<thead>"+
+                  "<tr class='table-light text-uppercase'>"+
+                    "<th scope='col'>ID</th>"+
+                    "<th scope='col'>Localidad</th>"+
+                    "<th scope='col'>Sitio</th>"+
+                    "<th scope='col'>Nis</th>"+
+                    "<th scope='col'>Reclamo Edesal</th>"+
+                    "<th scope='col'>Acciones</th>"+
+                  "</tr>"+
+                "</thead>"+
+                "</table>"
+  
+        document.getElementById('tablaReclamosModal').innerHTML = tabla;
+        return true;
+    }
+  
+    function mostrarListaReclamos(datosReclamos){
+      var contenedor = document.getElementById('tablaReclamosModal');
+  
+      if(datosReclamos.length > 0){
+      tablaMostrarReclamos();
+  
+      $('#tablaReclamos').DataTable({
+        data: datosReclamos,
+        columns:[
+          {data: 'id'},
+          {data: 'localidad'},
+          {data: 'sitioName'},
+          {data: 'nis'},
+          {data: 'recalamoEdesal'},
+          {data: 'acciones'}
+  
+        ],
+  
+        dom: 'Bfrtip',
+        lengthMenu: [
+          [10,25,50,100,500, -1],
+          ['10 Filas','25 Filas', '50 Filas', '100 Filas', '500 Filas', 'Ver Todo']
+        ],
+  
+        buttons:[
+          'copy','csv','excel','pdf','pageLength'
+        ],      
+  
+        language: {
+          "decimal": "",
+          "emptyTable": "No hay informacion",
+          "info": "Mostrando _START_ a _END_ de _TOTAL_ Registros",
+          "infoEmpty": "Mostrando 0 de 0 registros",
+          "infoFiltered": "(Filtrado de _MAX_ total Registros)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lenghtMenu": "Mostrar _MENU_ Registros",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+            "firts": "Primero",
+            "last": "Ultimo",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        },
+  
+        rowCallback: function(row,data){
+        
+        }
+        
+      }); 
+    }else{
+      tablaVacia("No se encontraron registros");
+      document.getElementById('tablaReclamosModal').innerHTML = "";
+    }
+    $.LoadingOverlay("hide");
+  
+    }
+  </script>
