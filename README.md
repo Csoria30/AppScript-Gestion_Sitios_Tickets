@@ -65,25 +65,16 @@ Nota: El documento en el repositorio llamado 'App Reclamos Edesal' es un ejemplo
 
 ## Tecnologias utilizados.
 
-<br />
 
-- [<img align="left" src="https://drive.google.com/uc?export=view&id=1eMyMFeL5wBSPQmf_6-meAVGLIscnS-S1" width="30" height="30" target="_blank" />][html]
+* [<img align="left" src="https://drive.google.com/uc?export=view&id=1eMyMFeL5wBSPQmf_6-meAVGLIscnS-S1" width="30" height="30" target="_blank" />][html]
 
-<br />
+* [<img align="left" src="https://drive.google.com/uc?export=view&id=1sBEAo8L4U6nzL0mZwUA6L27x6mAU-p3v" width="30" height="30" target="_blank"/>][appScript]
 
-- [<img align="left" src="https://drive.google.com/uc?export=view&id=1sBEAo8L4U6nzL0mZwUA6L27x6mAU-p3v" width="30" height="30" target="_blank"/>][appScript]
+* [<img align="left" src="https://drive.google.com/uc?export=view&id=1QHh3ynR6kzyBlWptysv81UteD6PswBaW" width="30" height="30" target="_blank"/>][js]
 
-<br />
+* [<img align="left" src="https://drive.google.com/uc?export=view&id=1r6yQjbrokymTF9JDgfpV4v63McP-qtWG" width="30" height="30" target="_blank"/>][bootstrap5]
 
-- [<img align="left" src="https://drive.google.com/uc?export=view&id=1QHh3ynR6kzyBlWptysv81UteD6PswBaW" width="30" height="30" target="_blank"/>][js]
-
-<br />
-
-- [<img align="left" src="https://drive.google.com/uc?export=view&id=1r6yQjbrokymTF9JDgfpV4v63McP-qtWG" width="30" height="30" target="_blank"/>][bootstrap5]
-
-<br />
-
-- [<img align="left" src="https://drive.google.com/uc?export=view&id=1WsV5p12xCWF45t6h_MB0Jt9LPpOvKwKs" width="30" height="30" target="_blank"/>][datatables]
+* [<img align="left" src="https://drive.google.com/uc?export=view&id=1WsV5p12xCWF45t6h_MB0Jt9LPpOvKwKs" width="30" height="30" target="_blank"/>][datatables]
 
 
 
@@ -91,15 +82,9 @@ Nota: El documento en el repositorio llamado 'App Reclamos Edesal' es un ejemplo
 <br /> <br /> <br />
 
 
-## Imagenes
 
-![Vista previa](https://drive.google.com/uc?export=view&id=1QWIf31jOfA_rNe0rfJadQL8a63u1a9lj)
-![Vista previa](https://drive.google.com/uc?export=view&id=19Dg3ArnBTDh-V4-YKocRBp0qOabWofUt)
-![Vista previa](https://drive.google.com/uc?export=view&id=1U0aB474WRDKfY1y-74K6smRhPBrE2-1X)
-![Vista previa](https://drive.google.com/uc?export=view&id=1EPb9EAdjWoKkcZobKOWftPF-IAFLZnO2)
-![Vista previa](https://drive.google.com/uc?export=view&id=16cHVFXLXbNtJoBhCGXzF7u7lL3idHWOc)
-![Vista previa](https://drive.google.com/uc?export=view&id=1w66YlhiU-tvdAHofzOfGxQxoBqUNhGA9)
 
+[<img align="left" src="https://drive.google.com/uc?export=view&id=1g07Pwa2DeBafGdB2RFMbmBmJ_zquGQvz" />][proyectoImagenes]
 
 
 [html]: https://html5.org/
@@ -107,3 +92,4 @@ Nota: El documento en el repositorio llamado 'App Reclamos Edesal' es un ejemplo
 [bootstrap5]: https://getbootstrap.com/
 [datatables]: https://datatables.net/
 [js]: https://lenguajejs.com/javascript/
+[proyectoImagenes]: https://drive.google.com/drive/folders/1zuvVxkrLBRnIUmsq2wXTeyBehYi_0HW5?usp=sharing
